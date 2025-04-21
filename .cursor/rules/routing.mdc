@@ -1,0 +1,18 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Next.js 应用路由
+
+本项目使用 Next.js 的 App Router 路由系统。
+
+## 路由规则
+- `app/page.tsx` 对应网站的根路由 `/`
+- 文件名为 `page.tsx` 的文件定义了一个路由
+- 文件名为 `layout.tsx` 的文件定义了一个布局，可以包裹多个页面
+- 文件夹名称直接映射到 URL 路径
+
+## 重要文件
+- [app/page.tsx](mdc:app/page.tsx) - 主页路由
+- [app/layout.tsx](mdc:app/layout.tsx) - 根布局，应用于所有页面

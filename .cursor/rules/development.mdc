@@ -1,0 +1,24 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# 开发指南
+
+## 项目命令
+- `npm run dev` - 启动开发服务器
+- `npm run build` - 构建生产环境代码
+- `npm run start` - 启动生产环境服务器
+- `npm run lint` - 运行 ESLint 检查代码
+
+## 开发实践
+- 遵循 TypeScript 类型定义
+- 使用 ESLint 确保代码质量
+- 组件应该是函数组件
+- 优先使用 Next.js 内置功能，如 Image 组件、字体优化等
+
+## 文件组织
+- 页面路由放在 `app` 目录下
+- 共享组件应该创建在 `app/components` 目录（目前未创建）
+- 公共函数和工具放在 `lib` 目录下
+- 静态资源放在 `public` 目录下

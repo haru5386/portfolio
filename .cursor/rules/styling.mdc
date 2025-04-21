@@ -1,0 +1,29 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# 样式系统
+
+本项目使用 Tailwind CSS 进行样式设计。
+
+## 主要文件
+- [app/globals.css](mdc:app/globals.css) - 包含全局样式和 Tailwind 指令
+- [lib/utils.ts](mdc:lib/utils.ts) - 提供 `cn()` 函数用于合并 Tailwind 类名
+
+## 样式约定
+- 使用 Tailwind 类名进行样式设计
+- 使用 `clsx` 和 `tailwind-merge` 处理条件类名
+- 应用程序使用 Geist 和 Geist Mono 字体
+- 遵循响应式设计原则，从移动端优先开始
+
+## 实用工具
+```typescript
+// lib/utils.ts 中的实用工具:
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```

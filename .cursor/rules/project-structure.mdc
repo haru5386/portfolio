@@ -1,0 +1,21 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Next.js 项目结构
+
+这是一个基于 Next.js 15.3.1 的应用程序，使用 React 19 和 TypeScript。
+
+## 主要目录和文件
+- [app/page.tsx](mdc:app/page.tsx) - 应用程序的主页面组件
+- [app/layout.tsx](mdc:app/layout.tsx) - 根布局组件，定义应用程序的整体布局结构
+- [app/globals.css](mdc:app/globals.css) - 全局CSS样式
+- [lib/utils.ts](mdc:lib/utils.ts) - 实用工具函数，如用于组合Tailwind类的函数
+
+## 项目技术栈
+- Next.js 15.3.1
+- React 19
+- TypeScript
+- Tailwind CSS
+- clsx 与 tailwind-merge 用于类名合并
