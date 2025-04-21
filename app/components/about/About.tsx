@@ -5,12 +5,12 @@ import AnimatedElement from '../ui/AnimatedElement';
 export default function About() {
   return (
     <section id="about" className="section relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-[#0a0118] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <AnimatedElement className="mb-16 text-center">
           <h2 className="text-gradient text-4xl sm:text-5xl font-bold mb-4">关于我</h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             我的背景、经历和专业理念
           </p>
         </AnimatedElement>
@@ -38,10 +38,10 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-teal-500/5 rounded-2xl z-0" />
               <div className="relative z-10">
                 <h3 className="text-2xl font-semibold mb-4 text-gradient">前端工程师与设计师</h3>
-                <p className="text-gray-200 mb-4">
+                <p className="text-gray-600 mb-4">
                   我是一名充满创造力的前端工程师，专注于创建具有未来感和沉浸式体验的现代网站和应用程序。我结合技术与设计，打造令人惊叹的数字体验。
                 </p>
-                <p className="text-gray-200">
+                <p className="text-gray-600">
                   我的专长在于将复杂的交互和动画融入到用户界面中，创造流畅、直观且引人入胜的用户体验。我热衷于探索新技术并将其应用到实际项目中。
                 </p>
               </div>
@@ -51,8 +51,8 @@ export default function About() {
               <div className="glass p-6 relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-purple-500/5 rounded-2xl z-0" />
                 <div className="relative z-10">
-                  <h3 className="text-xl font-semibold mb-3 text-white">我的价值观</h3>
-                  <ul className="space-y-2 text-gray-300">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-700">我的价值观</h3>
+                  <ul className="space-y-2 text-gray-600">
                     <li className="flex items-center">
                       <div className="w-2 h-2 bg-teal-400 rounded-full mr-3" />
                       追求卓越的代码质量和优雅架构

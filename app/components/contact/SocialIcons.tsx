@@ -94,7 +94,7 @@ export default function SocialIcons() {
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-white/10 transition-colors duration-300 border border-white/10"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/50 text-gray-700 hover:bg-purple-50 transition-colors duration-300 border border-gray-200"
           whileHover={{ 
             scale: 1.1,
             boxShadow: '0 0 15px 2px rgba(167, 139, 250, 0.3)'

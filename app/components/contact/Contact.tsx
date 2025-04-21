@@ -26,7 +26,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-[#0a0118] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
       
       <div className="absolute bottom-0 right-0 w-3/4 h-3/4 bg-gradient-to-tl from-purple-500/5 to-transparent blur-3xl pointer-events-none" />
       <div className="absolute top-0 left-0 w-2/3 h-1/2 bg-gradient-to-br from-teal-500/5 to-transparent blur-3xl pointer-events-none" />
@@ -34,7 +34,7 @@ export default function Contact() {
       <div className="container mx-auto max-w-5xl relative z-10">
         <AnimatedElement className="mb-16 text-center">
           <h2 className="text-gradient text-4xl sm:text-5xl font-bold mb-4">联系我</h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             想讨论项目合作或有任何问题？请随时联系我
           </p>
         </AnimatedElement>
@@ -59,15 +59,15 @@ export default function Contact() {
                         strokeWidth="2" 
                         strokeLinecap="round" 
                         strokeLinejoin="round" 
-                        className="text-purple-300"
+                        className="text-purple-600"
                       >
                         <rect width="20" height="16" x="2" y="4" rx="2" />
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400">邮箱</p>
-                      <p className="text-white">contact@yourname.com</p>
+                      <p className="text-sm text-gray-500">邮箱</p>
+                      <p className="text-gray-700">contact@yourname.com</p>
                     </div>
                   </div>
                   
@@ -83,15 +83,15 @@ export default function Contact() {
                         strokeWidth="2" 
                         strokeLinecap="round" 
                         strokeLinejoin="round" 
-                        className="text-teal-300"
+                        className="text-teal-600"
                       >
                         <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400">位置</p>
-                      <p className="text-white">中国，上海</p>
+                      <p className="text-sm text-gray-500">位置</p>
+                      <p className="text-gray-700">中国，上海</p>
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ export default function Contact() {
               <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-purple-500/10 rounded-2xl z-0" />
               <div className="relative z-10">
                 <div className="mb-6">
-                  <label htmlFor="name" className="block text-sm text-gray-300 mb-2">
+                  <label htmlFor="name" className="block text-sm text-gray-600 mb-2">
                     姓名
                   </label>
                   <input
@@ -116,13 +116,13 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all duration-300"
+                    className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 text-gray-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all duration-300"
                     placeholder="你的姓名"
                   />
                 </div>
                 
                 <div className="mb-6">
-                  <label htmlFor="email" className="block text-sm text-gray-300 mb-2">
+                  <label htmlFor="email" className="block text-sm text-gray-600 mb-2">
                     邮箱
                   </label>
                   <input
@@ -132,13 +132,13 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30 transition-all duration-300"
+                    className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 text-gray-700 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30 transition-all duration-300"
                     placeholder="你的邮箱"
                   />
                 </div>
                 
                 <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm text-gray-600 mb-2">
                     消息
                   </label>
                   <textarea
@@ -148,7 +148,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 resize-none"
+                    className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 text-gray-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 resize-none"
                     placeholder="你的消息..."
                   ></textarea>
                 </div>
@@ -167,7 +167,7 @@ export default function Contact() {
         </div>
         
         <AnimatedElement className="mt-20 text-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-500 text-sm">
             © {new Date().getFullYear()} 你的名字. 保留所有权利.
           </p>
         </AnimatedElement>

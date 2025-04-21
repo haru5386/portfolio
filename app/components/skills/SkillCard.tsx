@@ -33,7 +33,7 @@ export default function SkillCard({ skill }: SkillCardProps) {
       >
         {skill.icon}
       </motion.div>
-      <h4 className="text-sm font-semibold text-white">{skill.name}</h4>
+      <h4 className="text-sm font-semibold text-gray-700">{skill.name}</h4>
     </motion.div>
   );
 } 

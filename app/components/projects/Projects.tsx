@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedElement from '../ui/AnimatedElement';
-import ProjectCard from './ProjectCard';
+import Image from 'next/image';
 
 // 示例项目数据
 const projects = [
@@ -40,36 +40,131 @@ const projects = [
 ];
 
 export default function Projects() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const handlePrev = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -330, behavior: 'smooth' });
+    }
+  };
+
+  const handleNext = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 330, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="projects" className="section relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-[#0a0118] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <AnimatedElement className="mb-12 text-center">
           <h2 className="text-gradient text-4xl sm:text-5xl font-bold mb-4">作品集</h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             探索我创造的沉浸式数字体验和创新界面设计
           </p>
         </AnimatedElement>
         
         <div className="relative px-4">
-          <div 
-            ref={containerRef}
-            className="flex flex-col gap-16 md:gap-20"
-          >
-            {projects.map((project, index) => (
-              <AnimatedElement
-                key={project.id}
-                delay={0.2 * index}
-                direction={index % 2 === 0 ? 'left' : 'right'}
+          <div className="flex justify-end items-center mb-6">
+            <div className="flex gap-2">
+              <button 
+                onClick={handlePrev}
+                aria-label="Previous projects"
+                className="w-12 h-12 rounded-full bg-white/70 flex items-center justify-center shadow-md hover:bg-white transition-colors"
               >
-                <ProjectCard 
-                  project={project} 
-                  reverse={index % 2 !== 0} 
-                />
-              </AnimatedElement>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" 
+                  height="24" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="m15 18-6-6 6-6"/>
+                </svg>
+              </button>
+              <button 
+                onClick={handleNext}
+                aria-label="Next projects"
+                className="w-12 h-12 rounded-full bg-white/70 flex items-center justify-center shadow-md hover:bg-white transition-colors"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" 
+                  height="24" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <div 
+            ref={scrollContainerRef}
+            className="horizontal-scroll hide-scrollbar"
+          >
+            {projects.map((project) => (
+              <motion.div
+                key={project.id}
+                className="horizontal-scroll-card glass"
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              >
+                <div className="relative w-full h-[240px]">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4 flex flex-col h-[160px]">
+                  <h4 className="text-xl font-semibold mb-2">{project.title}</h4>
+                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span 
+                        key={tag} 
+                        className="px-2 py-1 text-xs bg-purple-100 text-purple-600 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <motion.a
+                    href={project.link}
+                    className="text-teal-600 flex items-center group text-sm mt-auto"
+                    whileHover={{ x: 5 }}
+                  >
+                    <span className="mr-2">查看项目</span>
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="16" 
+                      height="16" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </motion.a>
+                </div>
+              </motion.div>
             ))}
           </div>
           

@@ -42,7 +42,7 @@ export default function Skills() {
       <div className="container mx-auto max-w-6xl relative z-10">
         <AnimatedElement className="mb-16 text-center">
           <h2 className="text-gradient text-4xl sm:text-5xl font-bold mb-4">技能</h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             我的专业技能和工具集，打造未来主义的网站体验
           </p>
         </AnimatedElement>
@@ -53,7 +53,7 @@ export default function Skills() {
             <div className="relative z-10">
               {categories.map((category, categoryIndex) => (
                 <div key={category.id} className="mb-10 last:mb-0">
-                  <h3 className="text-xl font-semibold mb-4 text-white">{category.name}</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-700">{category.name}</h3>
                   <div className="skills-grid">
                     {skills
                       .filter(skill => skill.category === category.id)
@@ -74,7 +74,7 @@ export default function Skills() {
         </AnimatedElement>
         
         <AnimatedElement className="text-center">
-          <p className="text-gray-200 max-w-xl mx-auto">
+          <p className="text-gray-600 max-w-xl mx-auto">
             我持续学习新技术并关注行业发展趋势，不断完善我的技能组合。
           </p>
           <motion.div
@@ -83,7 +83,7 @@ export default function Skills() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <a href="#about" className="text-teal-300 flex items-center justify-center group">
+            <a href="#about" className="text-teal-600 flex items-center justify-center group">
               <span className="mr-2">了解更多关于我</span>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
