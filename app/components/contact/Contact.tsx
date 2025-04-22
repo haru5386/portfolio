@@ -3,6 +3,14 @@ import { motion } from 'framer-motion';
 import AnimatedElement from '../ui/AnimatedElement';
 import SocialIcons from './SocialIcons';
 import { createClient } from '@supabase/supabase-js';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 // process.env.NEXT_PUBLIC_SUPABASE_URL || 
 // process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
 
@@ -11,22 +19,29 @@ const supabaseUrl = 'https://xzlquiertnagpwkicuag.supabase.co';
 const supabaseAnonKey =  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6bHF1aWVydG5hZ3B3a2ljdWFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyOTQ4MDAsImV4cCI6MjA2MDg3MDgwMH0.IdIVw5lycZEqFvxHomGp-m_edIifdJTW4hqOiecF390';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// 表单验证模式
+const formSchema = z.object({
+  name: z.string().min(2, { message: '姓名至少需要2个字符' }),
+  email: z.string().email({ message: '请输入有效的邮箱地址' }),
+  message: z.string().min(10, { message: '消息至少需要10个字符' }),
+});
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  // 1. 使用 useForm 钩子定义表单
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // 2. 定义提交函数
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
     
@@ -36,9 +51,9 @@ export default function Contact() {
         .from('contact_messages')
         .insert([
           { 
-            name: formData.name, 
-            email: formData.email, 
-            message: formData.message,
+            name: values.name, 
+            email: values.email, 
+            message: values.message,
             created_at: new Date().toISOString()
           }
         ]);
@@ -47,8 +62,8 @@ export default function Contact() {
       
       // 提交成功
       setSubmitStatus('success');
-      // 清空表单
-      setFormData({ name: '', email: '', message: '' });
+      // 重置表单
+      form.reset();
       
       setTimeout(() => {
         setSubmitStatus('idle');
@@ -146,71 +161,79 @@ export default function Contact() {
           </div>
           
           <AnimatedElement direction="right">
-            <form onSubmit={handleSubmit} className="border-2 border-black bg-white p-8">
+            <div className="border-2 border-black bg-white p-8">
               <h3 className="text-xl font-bold mb-6 border-b-2 border-black pb-3">
                 发送消息
               </h3>
               
-              <div className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
-                    姓名
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-[#f5f5f0] border-2 border-black px-4 py-3 text-gray-900 focus:outline-none focus:bg-white transition-colors duration-200"
-                    placeholder="你的姓名"
-                    disabled={isSubmitting}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="block text-sm font-medium text-gray-900 mb-2">姓名</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="你的姓名" 
+                            disabled={isSubmitting}
+                            className="w-full bg-[#f5f5f0] border-2 border-black px-4 py-3 h-auto text-gray-900 focus:outline-none focus:bg-white focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors duration-200"
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-500 text-sm mt-1" />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
-                    邮箱
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
+                  
+                  <FormField
+                    control={form.control}
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-[#f5f5f0] border-2 border-black px-4 py-3 text-gray-900 focus:outline-none focus:bg-white transition-colors duration-200"
-                    placeholder="你的邮箱"
-                    disabled={isSubmitting}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="block text-sm font-medium text-gray-900 mb-2">邮箱</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="你的邮箱" 
+                            disabled={isSubmitting}
+                            className="w-full bg-[#f5f5f0] border-2 border-black px-4 py-3 h-auto text-gray-900 focus:outline-none focus:bg-white focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors duration-200"
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-500 text-sm mt-1" />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
-                    消息
-                  </label>
-                  <textarea
-                    id="message"
+                  
+                  <FormField
+                    control={form.control}
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full bg-[#f5f5f0] border-2 border-black px-4 py-3 text-gray-900 focus:outline-none focus:bg-white transition-colors duration-200 resize-none"
-                    placeholder="你的消息..."
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="block text-sm font-medium text-gray-900 mb-2">消息</FormLabel>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="你的消息..." 
+                            disabled={isSubmitting}
+                            className="w-full bg-[#f5f5f0] border-2 border-black px-4 py-3 text-gray-900 focus:outline-none focus:bg-white focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors duration-200 resize-none min-h-[120px]"
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-500 text-sm mt-1" />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <Button
+                    type="submit"
                     disabled={isSubmitting}
-                  ></textarea>
-                </div>
-                
-                <motion.button
-                  type="submit"
-                  className="w-full border-2 border-black bg-black text-white py-3 font-medium text-lg relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  disabled={isSubmitting}
-                >
-                  <span className="relative z-10 flex items-center justify-center">
+                    className={cn(
+                      "w-full border-2 border-black bg-black text-white py-3 h-auto font-medium text-lg relative overflow-hidden rounded-none",
+                      "hover:bg-black/90 hover:scale-[1.02] active:scale-[0.98] transition-all",
+                      "disabled:opacity-70 disabled:cursor-not-allowed"
+                    )}
+                  >
                     {isSubmitting ? (
                       <>
                         <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -226,31 +249,30 @@ export default function Contact() {
                     ) : (
                       '发送消息'
                     )}
-                  </span>
-                  <span className="absolute inset-0 bg-black group-hover:bg-black/80 transition-colors duration-300 ease-in-out"></span>
-                </motion.button>
-                
-                {submitStatus === 'success' && (
-                  <motion.p 
-                    className="text-green-600 text-center mt-2"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                  >
-                    您的消息已成功发送，我会尽快回复您！
-                  </motion.p>
-                )}
-                
-                {submitStatus === 'error' && (
-                  <motion.p 
-                    className="text-red-600 text-center mt-2"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                  >
-                    发送失败，请稍后重试或通过其他方式联系我。
-                  </motion.p>
-                )}
-              </div>
-            </form>
+                  </Button>
+                </form>
+              </Form>
+              
+              {submitStatus === 'success' && (
+                <motion.p 
+                  className="text-green-600 text-center mt-4"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  您的消息已成功发送，我会尽快回复您！
+                </motion.p>
+              )}
+              
+              {submitStatus === 'error' && (
+                <motion.p 
+                  className="text-red-600 text-center mt-4"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  发送失败，请稍后重试或通过其他方式联系我。
+                </motion.p>
+              )}
+            </div>
           </AnimatedElement>
         </div>
         

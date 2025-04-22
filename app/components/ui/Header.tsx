@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MobileMenu from './MobileMenu';
+import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from 'next-themes';
 
 interface NavItem {
   name: string;
@@ -18,6 +20,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('#hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   // 立即初始化scrolled状态，避免闪烁
   useEffect(() => {
@@ -54,14 +58,18 @@ export default function Header() {
     <>
       <motion.header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? 'bg-[#f5f5f0] shadow-md' : 'bg-transparent'
+          scrolled 
+            ? isDark 
+              ? 'bg-[#121212] shadow-md shadow-black/20' 
+              : 'bg-[#f5f5f0] shadow-md' 
+            : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <div className="container mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
-          <a href="#hero" className="font-black text-2xl text-black tracking-tight">
+          <a href="#hero" className={`font-black text-2xl tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>
             PORTFOLIO
           </a>
           
@@ -72,34 +80,43 @@ export default function Header() {
                 href={item.href}
                 className={`relative px-2 py-1 transition-colors duration-300 font-medium ${
                   activeSection === item.href 
-                    ? 'text-black' 
-                    : 'text-gray-600 hover:text-black'
+                    ? isDark ? 'text-white' : 'text-black'
+                    : isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'
                 }`}
               >
                 {item.name}
                 {activeSection === item.href && (
                   <motion.div
-                    className="absolute bottom-0 left-0 h-0.5 w-full bg-black"
+                    className={`absolute bottom-0 left-0 h-0.5 w-full ${isDark ? 'bg-white' : 'bg-black'}`}
                     layoutId="navIndicator"
                     transition={{ duration: 0.3 }}
                   />
                 )}
               </a>
             ))}
+            <ThemeToggle />
           </nav>
           
           <a 
             href="#contact" 
-            className="hidden md:block border-2 border-black bg-black text-white hover:bg-transparent hover:text-black px-5 py-2 font-medium transition-all duration-300 text-sm relative overflow-hidden group"
+            className={`hidden md:block border-2 ${
+              isDark 
+                ? 'border-white bg-white text-black hover:bg-transparent hover:text-white' 
+                : 'border-black bg-black text-white hover:bg-transparent hover:text-black'
+            } px-5 py-2 font-medium transition-all duration-300 text-sm relative overflow-hidden group`}
           >
             <span className="relative z-10">联系我</span>
-            <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
+            <span className={`absolute inset-0 ${
+              isDark ? 'bg-white' : 'bg-black'
+            } translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out`}></span>
           </a>
           
           {/* 移动端菜单按钮 */}
           <div className="md:hidden">
             <button 
-              className="w-10 h-10 border-2 border-black flex items-center justify-center relative overflow-hidden group hover:text-white transition-colors duration-300" 
+              className={`w-10 h-10 border-2 ${
+                isDark ? 'border-white text-white' : 'border-black text-black'
+              } flex items-center justify-center relative overflow-hidden group hover:text-white transition-colors duration-300`}
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="relative z-10">
@@ -119,7 +136,9 @@ export default function Header() {
                   <line x1="3" y1="18" x2="21" y2="18" />
                 </svg>
               </span>
-              <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
+              <span className={`absolute inset-0 ${
+                isDark ? 'bg-white' : 'bg-black'
+              } translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out`}></span>
             </button>
           </div>
         </div>
