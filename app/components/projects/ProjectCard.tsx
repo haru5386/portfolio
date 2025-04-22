@@ -2,20 +2,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import ProjectModal from './ProjectModal';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  link: string;
-  fullDescription?: string;
-  gallery?: string[];
-}
+import { Project } from '@/types/index.type';
 
 interface ProjectCardProps {
-  project: Project;
+  readonly project: Project;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
@@ -24,7 +14,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <>
       <motion.div
-        className="horizontal-scroll-card bg-white border-2 border-black cursor-pointer"
+        className="w-[85vw] md:max-w-[300px] max-w-[350px] relative rounded-lg flex-[0_0_auto] overflow-hidden bg-white border-2 border-black cursor-pointer snap-start h-max"
         whileHover={{ y: -10, transition: { duration: 0.3 } }}
         onClick={() => setIsModalOpen(true)}
       >
@@ -36,9 +26,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             className="object-cover"
           />
         </div>
-        <div className="p-6 flex flex-col h-[180px]">
+        <div className="pb-6 px-6 pt-2 flex flex-col">
           <h4 className="text-xl font-bold mb-2">{project.title}</h4>
-          <p className="text-sm text-gray-700 mb-4 line-clamp-2">{project.description}</p>
+          <p className="text-sm text-gray-700 mb-4 h-14">{project.description}</p>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.tags.slice(0, 3).map((tag) => (
               <span 
@@ -49,8 +39,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </span>
             ))}
           </div>
-          <div 
-            className="text-black flex items-center group text-sm mt-auto font-medium relative z-10"
+          <button 
+            className="text-black flex items-center group text-sm mt-auto font-medium relative z-10 bg-transparent border-none p-0 cursor-pointer"
             onClick={(e) => {
               e.stopPropagation();
               setIsModalOpen(true);
@@ -72,7 +62,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
-          </div>
+          </button>
         </div>
       </motion.div>
 

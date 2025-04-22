@@ -238,22 +238,6 @@
   height: 8px;
 }
 
-.horizontal-scroll-card {
-  scroll-snap-align: start;
-  flex: 0 0 auto;
-  width: 85vw;
-  max-width: 350px;
-  height: 400px;
-  border-radius: 1rem;
-  overflow: hidden;
-  position: relative;
-}
-
-@media (min-width: 640px) {
-  .horizontal-scroll-card {
-    width: 300px;
-  }
-}
 
 /* Animation utilities */
 @keyframes float {

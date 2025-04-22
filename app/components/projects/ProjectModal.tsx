@@ -7,26 +7,16 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/components/ui/dialog";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  link: string;
-  fullDescription?: string;
-  gallery?: string[];
-}
+import { Project } from '@/types/index.type';
 
 interface ProjectModalProps {
-  project: Project;
-  isOpen: boolean;
-  onClose: () => void;
+  readonly project: Project;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
 }
 
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
-  // 当模态框打开时禁止背景滚动
+  // 當模態框打開時禁止背景滾動
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -37,7 +27,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
     };
   }, [isOpen]);
 
-  // 键盘监听，按Esc关闭模态框
+  // 鍵盤監聽，按Esc關閉模態框
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -54,10 +44,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 overflow-y-auto max-h-[90vh] border-2 border-black">
-        <DialogHeader className="sticky top-0 bg-white z-10 p-6 border-b-2 border-black">
+      <DialogContent className="w-[95%] sm:max-w-4xl p-0 overflow-y-auto max-h-[95vh] border-2 border-black">
+        <DialogHeader className="sticky top-0 bg-white z-10 py-4 px-6 border-b-2 border-black">
           <div className="flex justify-between items-center">
-            <DialogTitle className="text-2xl font-bold">{project.title}</DialogTitle>
+            <DialogTitle className="text-xl font-bold ">{project.title}</DialogTitle>
             <DialogClose className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-full">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -77,7 +67,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           </div>
         </DialogHeader>
             
-        <div className="relative w-full h-[300px] md:h-[400px]">
+        <div className="relative w-full h-[300px] md:h-[500px]">
           <Image
             src={project.image}
             alt={project.title}
@@ -98,23 +88,31 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             ))}
           </div>
               
-          <p className="text-gray-700 mb-8">
-            {project.fullDescription || project.description}
-          </p>
+          <h4 className="text-lg font-bold mb-3">{project.title}</h4>
+          <h6 className="text-md font-bold mb-1">角色：{project.role}</h6>
+          <ul className="text-gray-700 mb-8 list-disc list-inside">
+            {project.fullDescription?.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
               
           {project.gallery && project.gallery.length > 0 && (
             <div className="mb-8">
-              <h4 className="text-xl font-bold mb-4">项目图集</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h4 className="text-xl font-bold mb-4">專案圖集</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {project.gallery.map((img, index) => (
-                  <div key={index} className="relative h-[200px] border border-gray-200">
+                  <a key={index} className="relative border aspect-video border-gray-200"
+                  href={img}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >
                     <Image
                       src={img}
-                      alt={`${project.title} gallery ${index + 1}`}
+                      alt={project.title}
                       fill
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
@@ -126,7 +124,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             rel="noopener noreferrer"
             className="inline-block px-5 py-3 bg-black text-white font-medium hover:bg-gray-800 transition-colors"
           >
-            访问项目
+            訪問專案
           </a>
         </div>
       </DialogContent>
