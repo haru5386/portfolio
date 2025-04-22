@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const socialLinks = [
   {
-    name: 'Github',
+    name: 'GitHub',
     url: 'https://github.com',
     icon: (
       <svg
@@ -94,18 +94,9 @@ export default function SocialIcons() {
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/50 text-gray-700 hover:bg-purple-50 transition-colors duration-300 border border-gray-200"
-          whileHover={{ 
-            scale: 1.1,
-            boxShadow: '0 0 15px 2px rgba(167, 139, 250, 0.3)'
-          }}
+          className="w-12 h-12 flex items-center justify-center border-2 border-black hover:bg-black hover:text-white transition-colors duration-300"
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.3,
-            delay: 0.1 * index,
-          }}
         >
           {social.icon}
         </motion.a>

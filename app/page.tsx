@@ -6,7 +6,6 @@ import Header from './components/ui/Header';
 import Hero from './components/hero/Hero';
 import Projects from './components/projects/Projects';
 import Skills from './components/skills/Skills';
-import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import GlassSphere from './components/loader/GlassSphere';
 
@@ -30,11 +29,10 @@ export default function Home() {
 
       {!loading && <Header />}
 
-      <main >
+      <main>
         <Hero />
         <Projects />
         <Skills />
-        <About />
         <Contact />
       </main>
     </>

@@ -14,8 +14,8 @@ export default function FloatingOrb({
   delay = 0,
 }: FloatingOrbProps) {
   const colorClass = color === 'purple' ? 'purple-glow' : 'teal-glow';
-  const baseColor = color === 'purple' ? 'rgba(167, 139, 250, 0.1)' : 'rgba(94, 234, 212, 0.1)';
-  const gradientColor = color === 'purple' ? 'rgba(167, 139, 250, 0.3)' : 'rgba(94, 234, 212, 0.3)';
+  const baseColor = color === 'purple' ? 'rgba(255, 100, 100, 0.1)' : 'rgba(250, 208, 196, 0.1)';
+  const gradientColor = color === 'purple' ? 'rgba(255, 100, 100, 0.3)' : 'rgba(250, 208, 196, 0.3)';
   
   return (
     <motion.div
@@ -32,12 +32,20 @@ export default function FloatingOrb({
       <motion.div
         animate={{
           y: [0, -15, 0],
+          rotate: [0, 5, 0, -5, 0]
         }}
         transition={{
-          duration: 4,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
+          y: {
+            duration: 4,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'easeInOut',
+          },
+          rotate: {
+            duration: 6,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }
         }}
       >
         <div
