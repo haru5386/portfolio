@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import AnimatedElement from '../ui-components/AnimatedElement';
 import ProjectParallax from './ProjectParallax';
 // 示例项目数据
@@ -14,7 +13,7 @@ const projects = [
       '使用 Vitest 撰寫邏輯單元測試，提高程式碼可靠性與可維護性。',
       '整合 Tailwind CSS 打造一致視覺，提升介面一致性與開發效率。'
     ],
-    image: '/projects/wallet-home.jpg',
+    image: '/projects/wallet-home.png',
     gallery: ['/projects/wallet-home.jpg','/projects/wallet-1.png', '/projects/wallet-2.png', '/projects/wallet-3.png', '/projects/wallet-4.png'],
     skills: ['Vue 3', 'shadcn', 'Tailwind CSS', 'TanStack Table', 'Playwright', 'Vitest'],
     role: '前端開發｜登入與權限模組負責人',
@@ -34,8 +33,8 @@ const projects = [
       'OAuth 登入：支援 Google、Telegram 第三方登入，加速用戶註冊流程。',
       '效能最佳化：Nuxt3 Dynamic Import 與 Nuxt Image 實作延遲載入，首頁 JS 體積減少約 40%。'
     ],
-    image: '/projects/powbit-home.jpg',
-    gallery: ['/projects/powbit-home.jpg','/projects/powbit-1.png', '/projects/powbit-2.png', '/projects/powbit-3.png', '/projects/powbit-4.png', '/projects/powbit-5.png'],
+    image: '/projects/powbit-home.png',
+    gallery: ['/projects/powbit-home.jpg','/projects/powbit-1.png', '/projects/powbit-2.png', '/projects/powbit-3.png', '/projects/powbit-4.png'],
     skills: ['Vue 3', 'Nuxt 3', 'UnoCSS'],
     role: '前端開發｜品牌官網與錢包功能整合',
     tags: ['官網開發', '國際化', '加密貨幣', '效能優化'],
@@ -52,7 +51,7 @@ const projects = [
       '多標籤頁管理：利用 KeepAlive 實現多標籤頁快取與操作（切換、關閉、刷新），提升使用效率與 UX。',
       '組件重用與開發效率：重構重複使用模組，開發效率提升 25%。'
     ],
-    image: '/projects/admin-home.jpg',
+    image: '/projects/admin-home.png',
     gallery: ['/projects/admin-home.jpg','/projects/admin-1.png', '/projects/admin-2.png', '/projects/admin-3.png',],
     skills: ['Vue 3', 'UnoCSS', 'Ant Design Vue', 'Tiptap'],
     role: '前端開發｜後台系統與 UI 工具建置',
@@ -72,8 +71,8 @@ const projects = [
       '多語系支援：建置 i18n 架構，結合 Google Sheet 達成即時多語更新，加快行銷上線效率。',
       'SEO 與數據追蹤：導入 SEO 最佳化（sitemap、JSON-LD、PWA），Lighthouse SEO 分數提升 30+，整合 GA4/GTM 追蹤使用者行為，驅動產品數據決策。'
     ],
-    image: '/projects/zorix-home.jpg',
-    gallery: ['/projects/zorix-home.jpg','/projects/zorix-1.png', '/projects/zorix-2.png', '/projects/zorix-3.png', '/projects/zorix-4.png'],
+    image: '/projects/zorix-home.png',
+    gallery: ['/projects/zorix-home.jpg','/projects/zorix-1.jpg', '/projects/zorix-2.jpg', '/projects/zorix-3.png', '/projects/zorix-4.jpg'],
     skills: ['Vue 2 → Vue 3', 'Nuxt 3', 'TypeScript', 'Tailwind CSS', 'Element Plus'],
     role: '前端主導開發與架構重構',
     tags: ['加密貨幣', 'WebSocket', 'KYC', 'i18n'],
@@ -93,8 +92,8 @@ const projects = [
       '公平性與安全性設計：實作可驗證隨機數生成機制、防作弊邏輯與下注額度控制，保障用戶公平體驗。',
       '即時數據分析與統計：提供即時下注紀錄、勝率統計與遊戲參與分析，強化用戶留存與互動。'
     ],
-    image: '/projects/crash-home.jpg',
-    gallery: ['/projects/crash-home.jpg','/projects/crash-1.png', '/projects/crash-2.png'],
+    image: '/projects/crash-home.png',
+    gallery: ['/projects/crash-home.jpg','/projects/crash-1.jpg', '/projects/crash-2.jpg'],
     skills: ['Vue 3', 'Pixi.js', 'Pinia', 'Howler.js', 'UnoCSS'],
     role: '前端開發｜遊戲引擎與自動策略模組',
     tags: ['即時遊戲', 'Pixi.js', '策略模組', '互動動畫'],
@@ -104,19 +103,7 @@ const projects = [
 
 
 export default function Projects() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const handlePrev = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -330, behavior: 'smooth' });
-    }
-  };
-
-  const handleNext = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 330, behavior: 'smooth' });
-    }
-  };
+  
 
   return (
     <section id="projects" className="min-h-screen w-full flex flex-col justify-center pt-20 pb-8 relative scroll-snap-start relative overflow-hidden bg-[#f5f5f0]">
@@ -129,50 +116,9 @@ export default function Projects() {
             Portfolio
             </h2>
           </AnimatedElement>
-          
-          <div className="flex gap-3">
-            <button 
-              onClick={handlePrev}
-              aria-label="Previous projects"
-              className="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6"/>
-              </svg>
-            </button>
-            <button 
-              onClick={handleNext}
-              aria-label="Next projects"
-              className="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6"/>
-              </svg>
-            </button>
-          </div>
         </div>
-        <ProjectParallax projects={projects}/>
       </div>
+        <ProjectParallax projects={projects}/>
     </section>
   );
 } 

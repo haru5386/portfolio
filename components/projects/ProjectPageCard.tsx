@@ -14,7 +14,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <>
       <div className='image-container flex h-[100vh] w-[100vw] flex-[0_0_auto] flex-col md:flex-row'>
-        <div className="relative w-full md:w-3/5 lg:w-2/3 h-[300px] md:h-full overflow-hidden">
+        <div className="relative w-full md:w-3/5 lg:w-2/3 flex items-center  aspect-video justify-center overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
@@ -23,20 +23,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             className="object-contain transition-transform duration-500 hover:scale-105"
             priority
           />
-          <div className="absolute bottom-8 left-8 md:hidden z-20">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl font-bold text-white shadow-text"
-            >
-              {project.title}
-            </motion.h2>
-          </div>
         </div>
         
         <div className="w-full md:w-2/5 lg:w-1/3 p-8 md:p-12 flex flex-col justify-center">
-          <div className="mb-8 hidden md:block">
+          <div className="mb-8">
             <motion.h2 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}

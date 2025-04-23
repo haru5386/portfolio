@@ -49,7 +49,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             src={imageSrc}
             alt={project.title}
             fill
-            className="object-cover object-top-center"
+            className="object-contain object-top-center"
           />
         </div>
                       
@@ -63,7 +63,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                       src={img}
                       alt={project.title}
                       fill
-                      className="object-cover object-top"
+                      className="object-contain object-top"
                     />
                   </div>
                 ))}

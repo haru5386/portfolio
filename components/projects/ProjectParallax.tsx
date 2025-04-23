@@ -1,14 +1,17 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Project } from "@/types/index.type";
 import ProjectPageCard from "./ProjectPageCard";
 
-export default function ProjectParallax({ projects }: { projects: Project[] }) {
+export default function ProjectParallax({ projects }: Readonly<{ projects: Project[] }>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
   const [isFullyInView, setIsFullyInView] = useState(false);
   const length = projects.length;
+  const [offset, setOffset] = useState(0);
+
 
   // 兩種主要背景顏色
   const bgColors = {
@@ -30,6 +33,11 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
         } else {
           setIsFullyInView(false);
         }
+
+        if(rect.top <= 0 && rect.top >= -width * length + height ){
+          const x = Math.round(rect.top / width) * width
+          setOffset(-x)
+        }
       }
     };
 
@@ -43,17 +51,19 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
       window.removeEventListener("scroll", checkInView);
       window.removeEventListener("resize", checkInView);
     };
-  }, []);
+  }, [width, height, length]);
 
   useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+      setHeight(window.innerHeight);
+    }
     handleResize(); // 初始化執行一次
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  const x = useTransform(scrollYProgress, [0, 1], [0, -width * (length-1)]);
+
 
   return (
     <div
@@ -64,10 +74,13 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
       <div>
         <motion.div
           className={cn(
-            "image-group flex top-0 left-0",
+            "image-group flex top-0 left-0 pt-18 md:pt-0",
             isFullyInView ? "fixed" : "static"
           )}
-          style={{ x }}
+          initial={{ x: 0 }}
+          animate={{ x: -offset }}
+          transition={{  type: 'easeInOut' }}
+          viewport={{amount: 'all'}}
         >
           {projects.map((project, index) => (
             <div 

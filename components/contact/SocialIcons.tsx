@@ -67,7 +67,7 @@ const socialLinks = [
   },
   {
     name: '履歷',
-    url: 'https://your-resume-link.com',
+    url: 'https://www.cake.me/s--qQIOvJLy5jCwoQWWKeo2jA--/snsn550',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
