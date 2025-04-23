@@ -4,22 +4,18 @@ import {
   SheetContent,
   SheetHeader,
   SheetClose,
+  SheetTitle
 } from "@/components/ui/sheet";
-import { cn } from '@/lib/utils';
+import { NavItem } from '@/types/index.type';
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  navItems: NavItem[]
 }
 
-const navItems = [
-  { name: '首页', href: '#hero' },
-  { name: '作品集', href: '#projects' },
-  { name: '技能', href: '#skills' },
-  { name: '联系', href: '#contact' },
-];
 
-export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, navItems}: MobileMenuProps) {
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent 
@@ -47,7 +43,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
           </SheetClose>
         </SheetHeader>
-        
+        <SheetTitle />
         <nav className="flex flex-col p-6 space-y-8">
           {navItems.map((item, index) => (
             <motion.a
@@ -72,7 +68,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             className="block border-2 border-black bg-black text-white hover:bg-transparent hover:text-black py-3 font-medium transition-all duration-300 text-center relative overflow-hidden group"
             onClick={onClose}
           >
-            <span className="relative z-10">联系我</span>
+            <span className="relative z-10">聯絡我</span>
             <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
           </a>
         </div>

@@ -50,7 +50,7 @@ export default function GlassSphere() {
       for (let i = 0; i < 15; i++) {
         bubblesArray.push({
           size: Math.random() * 60 + 20,
-          color: Math.random() > 0.5 ? '#9795f0' : '#ddd6f3',
+          color: Math.random() > 0.5 ? '#FFCC85' : '#FCEFCF',
           x: Math.random() * 80 + 10,
           y: Math.random() * 80 + 10,
           delay: Math.random() * 2,

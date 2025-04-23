@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MobileMenu from './MobileMenu';
-
-interface NavItem {
-  name: string;
-  href: string;
-}
+import { NavItem } from '@/types/index.type';
 
 const navItems: NavItem[] = [
-  { name: '首页', href: '#hero' },
+  { name: '首頁', href: '#hero' },
   { name: '作品集', href: '#projects' },
   { name: '技能', href: '#skills' },
-  { name: '联系', href: '#contact' },
+  { name: '聯絡我', href: '#contact' },
 ];
 
 export default function Header() {
@@ -19,12 +15,10 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState('#hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // 立即初始化scrolled状态，避免闪烁
   useEffect(() => {
     setScrolled(window.scrollY > 10);
   }, []);
 
-  // 处理滚动事件
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -92,11 +86,10 @@ export default function Header() {
             href="#contact" 
             className="hidden md:block border-2 border-black bg-black text-white hover:bg-transparent hover:text-black px-5 py-2 font-medium transition-all duration-300 text-sm relative overflow-hidden group"
           >
-            <span className="relative z-10">联系我</span>
+            <span className="relative z-10">聯絡我</span>
             <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
           </a>
           
-          {/* 移动端菜单按钮 */}
           <div className="md:hidden">
             <button 
               className="w-10 h-10 border-2 border-black text-black flex items-center justify-center relative overflow-hidden group hover:text-white transition-colors duration-300"
@@ -128,6 +121,7 @@ export default function Header() {
       <MobileMenu 
         isOpen={mobileMenuOpen} 
         onClose={() => setMobileMenuOpen(false)} 
+        navItems={navItems}
       />
     </>
   );

@@ -2,21 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import Header from './components/ui/Header';
-import Hero from './components/hero/Hero';
-import Projects from './components/projects/Projects';
-import Skills from './components/skills/Skills';
-import Contact from './components/contact/Contact';
-import GlassSphere from './components/loader/GlassSphere';
+import Header from '../components/ui-components/Header';
+import Hero from '../components/hero/Hero';
+import Projects from '../components/projects/Projects';
+import Skills from '../components/skills/Skills';
+import Contact from '../components/contact/Contact';
+import GlassSphere from '../components/loader/GlassSphere';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 模拟加载过程
+    // 模擬loading過程
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);

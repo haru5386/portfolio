@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
-import MouseGlow from '../ui/MouseGlow';
-import AnimatedElement from '../ui/AnimatedElement';
+import AnimatedElement from '../ui-components/AnimatedElement';
 import FloatingOrb from './FloatingOrb';
 
 export default function Hero() {
   return (
-    <section id="hero" className="section relative overflow-hidden bg-[#f5f5f0]">
+    <section id="hero" className="min-h-screen w-full flex flex-col justify-center pt-20 pb-8 relative scroll-snap-start relative overflow-hidden bg-[#f5f5f0]">
       <div className="absolute right-1/4 top-1/3 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-gradient-to-r from-red-400 via-orange-300 to-yellow-200 rounded-full blur-[100px] opacity-60 pointer-events-none" />
       
       <div className="container mx-auto max-w-7xl relative z-10 px-6 md:px-12">
@@ -13,19 +12,20 @@ export default function Hero() {
           <div>
             <AnimatedElement delay={0.3}>
               <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-black mb-6 tracking-tight leading-none">
-                WELCOME
+              HELLO
               </h1>
               
-              <p className="text-lg md:text-xl text-gray-700 max-w-xl mb-12 leading-relaxed">
-                Crafting digital experiences with precision and creativity. Transforming ideas into elegant, functional interfaces that resonate with users.
+              <p className="text-lg md:text-xl text-gray-700 max-w-xl mb-6 leading-relaxed">
+                I’m <strong>Chloe</strong>, a frontend engineer with a designer’s eye.<br></br>
+                I build clean, responsive, and animated interfaces—where code meets creativity.
               </p>
               
               <div className="flex flex-wrap gap-6 mt-10">
                 <a href="#projects" className="border-2 border-black bg-black text-white hover:bg-transparent hover:text-black px-8 py-3 font-medium transition-all duration-300 text-lg">
-                  查看作品
+                  Portfolio
                 </a>
                 <a href="#contact" className="border-2 border-black px-8 py-3 font-medium hover:bg-black hover:text-white transition-all duration-300 text-lg">
-                  联系我
+                  Contact
                 </a>
               </div>
             </AnimatedElement>
@@ -55,7 +55,7 @@ export default function Hero() {
         <div className="absolute bottom-12 left-6 md:left-12">
           <div className="flex flex-col gap-1">
             <div className="w-16 h-[2px] bg-black mb-2"></div>
-            <span className="text-sm text-gray-600">WE ARE THE LEADERS IN</span>
+            <span className="text-sm text-gray-600">I CODE WHAT I IMAGINE</span>
             <span className="text-sm text-gray-600">WEB & MOBILE DESIGN</span>
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function Hero() {
             transition={{ delay: 1.5, duration: 0.5 }}
             className="inline-flex items-center gap-2"
           >
-            <span className="text-sm">WHO WE ARE</span>
+            <span className="text-sm">WHO I AM</span>
             <div className="w-12 h-[1px] bg-black"></div>
           </motion.div>
         </div>

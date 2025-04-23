@@ -1,56 +1,53 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import AnimatedElement from '../ui/AnimatedElement';
+import AnimatedElement from '../ui-components/AnimatedElement';
 
-// 更新技能数据，调整为用户的实际技能
 const skills = [
-  { id: 1, name: 'Vue.js', icon: '🟢', category: 'frontend' },
-  { id: 2, name: 'Nuxt.js', icon: '💚', category: 'frontend' },
-  { id: 3, name: 'React', icon: '⚛️', category: 'frontend' },
-  { id: 4, name: 'Next.js', icon: '▲', category: 'frontend' },
-  { id: 5, name: 'Tailwind CSS', icon: '🎨', category: 'styling' },
-  { id: 6, name: 'TypeScript', icon: '𝐓𝐒', category: 'language' },
-  { id: 7, name: 'JavaScript', icon: '𝐉𝐒', category: 'language' },
-  { id: 8, name: 'HTML5', icon: '🏗️', category: 'frontend' },
-  { id: 9, name: 'CSS3', icon: '🎭', category: 'styling' },
-  { id: 10, name: 'Vuex/Pinia', icon: '📦', category: 'state' },
-  { id: 11, name: 'Redux', icon: '🔄', category: 'state' },
-  { id: 12, name: 'GraphQL', icon: '◼️', category: 'api' },
-  { id: 13, name: 'REST API', icon: '🌊', category: 'api' },
-  { id: 14, name: 'Git', icon: '📊', category: 'tools' },
-  { id: 15, name: 'Webpack', icon: '📦', category: 'tools' },
-  { id: 16, name: 'Vite', icon: '⚡', category: 'tools' },
+  { id: 1, name: 'Vue.js', category: 'frontend', percentage: 100 },
+  { id: 2, name: 'Nuxt.js', category: 'frontend', percentage: 100 },
+  { id: 3, name: 'React', category: 'frontend', percentage: 80 },
+  { id: 4, name: 'Next.js', category: 'frontend', percentage: 80 },
+  { id: 5, name: 'Vuex/Pinia', category: 'frontend', percentage: 100 },
+  { id: 6, name: 'Redux', category: 'frontend', percentage: 80 },
+  { id: 7, name: 'HTML5', category: 'frontend', percentage: 100 },
+  { id: 8, name: 'TypeScript', category: 'language', percentage: 90 },
+  { id: 9, name: 'JavaScript', category: 'language', percentage: 100 },
+  { id: 10, name: 'Tailwind CSS', category: 'styling', percentage: 100 },
+  { id: 11, name: 'CSS3', category: 'styling', percentage: 100 },
+  { id: 12, name: 'SCSS', category: 'styling', percentage: 100 },
+  { id: 13, name: 'Git', category: 'tools', percentage: 100 },
+  { id: 14, name: 'Vite', category: 'tools', percentage: 90 },
+  { id: 15, name: 'Photoshop', category: 'design', percentage: 100 },
+  { id: 16, name: 'Illustrator', category: 'design', percentage: 100 },
+  { id: 17, name: 'Figma', category: 'design', percentage: 90 },
 ];
 
-// 更新分类映射
 const categories = [
   { id: 'frontend', name: '前端框架' },
-  { id: 'language', name: '编程语言' },
-  { id: 'styling', name: '样式与排版' },
-  { id: 'state', name: '状态管理' },
-  { id: 'api', name: 'API与数据' },
-  { id: 'tools', name: '开发工具' },
+  { id: 'language', name: '程式語言' },
+  { id: 'styling', name: '樣式與排版' },
+  { id: 'tools', name: '開發工具' },
+  { id: 'design', name: '設計工具' },
 ];
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('frontend');
   
   return (
-    <section id="skills" className="section relative overflow-hidden bg-[#f5f5f0]">
-      {/* 模糊的颜色块 */}
+    <section id="skills" className="min-h-screen w-full flex flex-col justify-center pt-20 pb-8 relative scroll-snap-start relative overflow-hidden bg-[#f5f5f0]">
       <div className="absolute right-1/3 bottom-1/4 w-[300px] h-[300px] md:w-[350px] md:h-[350px] bg-gradient-to-r from-yellow-200 via-orange-200 to-red-300 rounded-full blur-[100px] opacity-40 pointer-events-none" />
       
       <div className="container mx-auto max-w-7xl relative z-10 px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-16 items-start">
           <div>
             <AnimatedElement>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-black tracking-tight mb-12">
-                技能
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-black tracking-tight mb-12">
+                Skills
               </h2>
               
               <div className="relative border-l-2 border-black pl-8 py-2 mb-8">
                 <p className="text-lg text-gray-700 max-w-xl leading-relaxed">
-                  专注于Vue、Nuxt和React、Next.js等现代前端技术栈，擅长使用Tailwind CSS构建响应式界面。
+                熟悉 Vue、Nuxt、React 與 Next.js 等現代前端技術，具備使用 Tailwind CSS 開發響應式介面的實戰經驗，能快速構建兼具美感與效能的產品介面。
                 </p>
               </div>
               
@@ -72,7 +69,7 @@ export default function Skills() {
               
               <div className="flex items-center gap-4 mt-12">
                 <div className="w-16 h-[2px] bg-black"></div>
-                <span className="text-sm font-medium">持续学习中</span>
+                <span className="text-sm font-medium">Keep Learning...</span>
               </div>
             </AnimatedElement>
           </div>
@@ -97,14 +94,13 @@ export default function Skills() {
                       transition={{ duration: 0.2 }}
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-xl">{skill.icon}</span>
                         <span className="font-medium">{skill.name}</span>
                       </div>
                       <div className="relative w-24 h-2 bg-[#f5f5f0]">
                         <motion.div
                           className="absolute top-0 left-0 h-full bg-black"
                           initial={{ width: 0 }}
-                          animate={{ width: `${80 + Math.random() * 20}%` }}
+                          animate={{ width: `${skill.percentage}%` }}
                           transition={{ duration: 1, delay: 0.2 * index }}
                         />
                       </div>
@@ -114,7 +110,7 @@ export default function Skills() {
             </div>
             
             <div className="mt-8 pt-6 border-t-2 border-black">
-              <span className="text-sm text-gray-700">精通现代前端开发工作流和框架生态系统</span>
+              <span className="text-sm text-gray-700">熟悉現代前端開發流程，具備多框架實戰經驗</span>
             </div>
           </div>
         </div>

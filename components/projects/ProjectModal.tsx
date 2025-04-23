@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import {
   Dialog,
@@ -16,31 +16,7 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
-  // 當模態框打開時禁止背景滾動
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
-
-  // 鍵盤監聽，按Esc關閉模態框
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onClose]);
+  const [imageSrc, setImageSrc] = useState(project.image);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -69,12 +45,29 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             
         <div className="relative w-full h-[300px] md:h-[500px]">
           <Image
-            src={project.image}
+            src={imageSrc}
             alt={project.title}
             fill
-            className="object-cover"
+            className="object-cover object-top-center"
           />
         </div>
+                      
+        {project.gallery && project.gallery.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {project.gallery.map((img, index) => (
+                  <div key={index} className="relative border aspect-video border-gray-200"
+                  onClick={() => setImageSrc(img)}
+                  >
+                    <Image
+                      src={img}
+                      alt={project.title}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                ))}
+              </div>
+          )}
             
         <div className="p-6">
           <div className="flex flex-wrap gap-2 mb-6">
@@ -95,28 +88,6 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               <li key={index}>{item}</li>
             ))}
           </ul>
-              
-          {project.gallery && project.gallery.length > 0 && (
-            <div className="mb-8">
-              <h4 className="text-xl font-bold mb-4">專案圖集</h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {project.gallery.map((img, index) => (
-                  <a key={index} className="relative border aspect-video border-gray-200"
-                  href={img}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >
-                    <Image
-                      src={img}
-                      alt={project.title}
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
               
           <a 
             href={project.link} 

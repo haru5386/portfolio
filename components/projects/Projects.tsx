@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import AnimatedElement from '../ui/AnimatedElement';
+import AnimatedElement from '../ui-components/AnimatedElement';
 import ProjectCard from './ProjectCard';
 
 // 示例项目数据
@@ -17,7 +17,7 @@ const projects = [
       '整合 Tailwind CSS 打造一致視覺，提升介面一致性與開發效率。'
     ],
     image: '/projects/wallet-home.jpg',
-    gallery: ['/projects/wallet-1.png', '/projects/wallet-2.png', '/projects/wallet-3.png', '/projects/wallet-4.png'],
+    gallery: ['/projects/wallet-home.jpg','/projects/wallet-1.png', '/projects/wallet-2.png', '/projects/wallet-3.png', '/projects/wallet-4.png'],
     skills: ['Vue 3', 'shadcn', 'Tailwind CSS', 'TanStack Table', 'Playwright', 'Vitest'],
     role: '前端開發｜登入與權限模組負責人',
     tags: ['權限控管', '2FA', '表格組件', '自動化測試'],
@@ -37,7 +37,7 @@ const projects = [
       '效能最佳化：Nuxt3 Dynamic Import 與 Nuxt Image 實作延遲載入，首屏 JS 體積減少約 40%。'
     ],
     image: '/projects/powbit-home.jpg',
-    gallery: ['/projects/powbit-1.png', '/projects/powbit-2.png', '/projects/powbit-3.png', '/projects/powbit-4.png', '/projects/powbit-5.png'],
+    gallery: ['/projects/powbit-home.jpg','/projects/powbit-1.png', '/projects/powbit-2.png', '/projects/powbit-3.png', '/projects/powbit-4.png', '/projects/powbit-5.png'],
     skills: ['Vue 3', 'Nuxt 3', 'UnoCSS'],
     role: '前端開發｜品牌官網與錢包功能整合',
     tags: ['官網開發', '國際化', '加密貨幣', '效能優化'],
@@ -55,7 +55,7 @@ const projects = [
       '組件重用與開發效率：重構重複使用模組，開發效率提升 25%。'
     ],
     image: '/projects/admin-home.jpg',
-    gallery: ['/projects/admin-1.png', '/projects/admin-2.png', '/projects/admin-3.png',],
+    gallery: ['/projects/admin-home.jpg','/projects/admin-1.png', '/projects/admin-2.png', '/projects/admin-3.png',],
     skills: ['Vue 3', 'UnoCSS', 'Ant Design Vue', 'Tiptap'],
     role: '前端開發｜後台系統與 UI 工具建置',
     tags: ['後台系統', 'UI 元件', 'Tiptap', 'UX 優化'],
@@ -75,7 +75,7 @@ const projects = [
       'SEO 與數據追蹤：導入 SEO 最佳化（sitemap、JSON-LD、PWA），Lighthouse SEO 分數提升 30+，整合 GA4/GTM 追蹤使用者行為，驅動產品數據決策。'
     ],
     image: '/projects/zorix-home.jpg',
-    gallery: ['/projects/zorix-1.png', '/projects/zorix-2.png', '/projects/zorix-3.png', '/projects/zorix-4.png'],
+    gallery: ['/projects/zorix-home.jpg','/projects/zorix-1.png', '/projects/zorix-2.png', '/projects/zorix-3.png', '/projects/zorix-4.png'],
     skills: ['Vue 2 → Vue 3', 'Nuxt 3', 'TypeScript', 'Tailwind CSS', 'Element Plus'],
     role: '前端主導開發與架構重構',
     tags: ['加密貨幣', 'WebSocket', 'KYC', 'i18n'],
@@ -96,7 +96,7 @@ const projects = [
       '即時數據分析與統計：提供即時下注紀錄、勝率統計與遊戲參與分析，強化用戶留存與互動。'
     ],
     image: '/projects/crash-home.jpg',
-    gallery: ['/projects/crash-1.png', '/projects/crash-2.png'],
+    gallery: ['/projects/crash-home.jpg','/projects/crash-1.png', '/projects/crash-2.png'],
     skills: ['Vue 3', 'Pixi.js', 'Pinia', 'Howler.js', 'UnoCSS'],
     role: '前端開發｜遊戲引擎與自動策略模組',
     tags: ['即時遊戲', 'Pixi.js', '策略模組', '互動動畫'],
@@ -121,15 +121,14 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="section relative overflow-hidden bg-[#f5f5f0]">
-      {/* 模糊的颜色块 */}
+    <section id="projects" className="min-h-screen w-full flex flex-col justify-center pt-20 pb-8 relative scroll-snap-start relative overflow-hidden bg-[#f5f5f0]">
       <div className="absolute left-1/4 top-1/3 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-gradient-to-r from-orange-200 via-red-300 to-red-400 rounded-full blur-[100px] opacity-40 pointer-events-none" />
       
       <div className="container mx-auto max-w-7xl relative z-10 px-6 md:px-12">
         <div className="flex justify-between items-center mb-16">
           <AnimatedElement>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-black tracking-tight">
-              作品集
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-black tracking-tight">
+            Portfolio
             </h2>
           </AnimatedElement>
           
@@ -182,11 +181,6 @@ export default function Projects() {
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
-        </div>
-        
-        <div className="flex items-center gap-4 mt-20">
-          <div className="w-16 h-[2px] bg-black"></div>
-          <span className="text-sm font-medium">查看更多作品</span>
         </div>
       </div>
     </section>

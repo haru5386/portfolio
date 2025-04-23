@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "前端工程师作品集 | 未来主义设计",
-  description: "前端工程师的个人作品集，展示未来主义设计和交互式用户体验",
+  title: "Chloe's Portfolio | Frontend Engineer",
+  description: "Chloe 前端工師作品集",
 };
 
 export default function RootLayout({

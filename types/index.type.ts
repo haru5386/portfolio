@@ -10,3 +10,8 @@ export interface Project {
   skills?: string[];
   role?: string;
 }
+
+export interface NavItem {
+  name: string;
+  href: string;
+}

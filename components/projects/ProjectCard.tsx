@@ -46,7 +46,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               setIsModalOpen(true);
             }}
           >
-            <span className="mr-2">查看项目</span>
+            <span className="mr-2">查看內容</span>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="16" 
