@@ -34,10 +34,10 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('frontend');
   
   return (
-    <section id="skills" className="min-h-screen w-full flex flex-col justify-center pt-20 pb-8 relative scroll-snap-start relative overflow-hidden bg-[#f5f5f0]">
+    <section id="skills" className="min-h-screen w-full flex flex-col justify-center pt-20 pb-8 relative scroll-snap-start relative overflow-hidden bg-[#f5f5f0] z-10">
       <div className="absolute right-1/3 bottom-1/4 w-[300px] h-[300px] md:w-[350px] md:h-[350px] bg-gradient-to-r from-yellow-200 via-orange-200 to-red-300 rounded-full blur-[100px] opacity-40 pointer-events-none" />
       
-      <div className="container mx-auto max-w-7xl relative z-10 px-6 md:px-12">
+      <div className="container mx-auto max-w-7xl relative z-10 px-6 md:px-12  ">
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-16 items-start">
           <div>
             <AnimatedElement>

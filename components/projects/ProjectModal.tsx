@@ -8,6 +8,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Project } from '@/types/index.type';
+import Tag from '../ui/tag';
 
 interface ProjectModalProps {
   readonly project: Project;
@@ -20,7 +21,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95%] sm:max-w-4xl p-0 overflow-y-auto max-h-[95vh] border-2 border-black">
+      <DialogContent className="w-[95%] sm:max-w-4xl p-0 overflow-y-auto max-h-[95vh] border-2 border-black bg-white">
         <DialogHeader className="sticky top-0 bg-white z-10 py-4 px-6 border-b-2 border-black">
           <div className="flex justify-between items-center">
             <DialogTitle className="text-xl font-bold ">{project.title}</DialogTitle>
@@ -72,12 +73,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
         <div className="p-6">
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tags.map((tag) => (
-              <span 
-                key={tag} 
-                className="px-3 py-1 text-xs bg-[#f5f5f0] border border-black text-black"
-              >
-                {tag}
-              </span>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
               
