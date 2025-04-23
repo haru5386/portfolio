@@ -11,12 +11,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-// process.env.NEXT_PUBLIC_SUPABASE_URL || 
-// process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
 
 // 初始化 Supabase 客戶端
-const supabaseUrl = 'https://xzlquiertnagpwkicuag.supabase.co';
-const supabaseAnonKey =  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6bHF1aWVydG5hZ3B3a2ljdWFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyOTQ4MDAsImV4cCI6MjA2MDg3MDgwMH0.IdIVw5lycZEqFvxHomGp-m_edIifdJTW4hqOiecF390';
+const supabaseUrl =  process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // 表單驗證模式
@@ -30,7 +28,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // 1. 使用 useForm 鉤子定義表單
+  // 1. 使用 useForm 定義表單
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

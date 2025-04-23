@@ -43,7 +43,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           </div>
         </DialogHeader>
             
-        <div className="relative w-full h-[300px] md:h-[500px]">
+        <div className="relative w-full aspect-video">
           <Image
             src={imageSrc}
             alt={project.title}
@@ -53,7 +53,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
         </div>
                       
         {project.gallery && project.gallery.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-5 gap-4">
                 {project.gallery.map((img, index) => (
                   <div key={index} className="relative border aspect-video border-gray-200"
                   onClick={() => setImageSrc(img)}
@@ -89,14 +89,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             ))}
           </ul>
               
-          <a 
+         {project.link && <a 
             href={project.link} 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-block px-5 py-3 bg-black text-white font-medium hover:bg-gray-800 transition-colors"
           >
             訪問專案
-          </a>
+          </a>}
         </div>
       </DialogContent>
     </Dialog>

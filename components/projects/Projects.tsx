@@ -12,7 +12,6 @@ const projects = [
       '負責帳號登入與 2FA 驗證流程設計，強化系統安全性。',
       '依據使用者權限動態渲染選單，實作 route guard 防止未授權訪問。',
       '以 shadcn UI + TanStack Table 製作共用表格元件，支援排序、篩選與自定欄位。',
-      '導入 Playwright 撰寫登入與權限控制 E2E 測試，確保操作流程穩定。',
       '使用 Vitest 撰寫邏輯單元測試，提高程式碼可靠性與可維護性。',
       '整合 Tailwind CSS 打造一致視覺，提升介面一致性與開發效率。'
     ],
@@ -21,7 +20,7 @@ const projects = [
     skills: ['Vue 3', 'shadcn', 'Tailwind CSS', 'TanStack Table', 'Playwright', 'Vitest'],
     role: '前端開發｜登入與權限模組負責人',
     tags: ['權限控管', '2FA', '表格組件', '自動化測試'],
-    link: '#'
+    link: ''
   },
   {
     id: 2,
@@ -34,14 +33,14 @@ const projects = [
       '支援法幣 & Crypto：串接第三方 API，實作錢包充值與提幣流程。',
       '用戶中心與安全設定：打造個人資料與安全功能（更改密碼、雙重驗證等）。',
       'OAuth 登入：支援 Google、Telegram 第三方登入，加速用戶註冊流程。',
-      '效能最佳化：Nuxt3 Dynamic Import 與 Nuxt Image 實作延遲載入，首屏 JS 體積減少約 40%。'
+      '效能最佳化：Nuxt3 Dynamic Import 與 Nuxt Image 實作延遲載入，首頁 JS 體積減少約 40%。'
     ],
     image: '/projects/powbit-home.jpg',
     gallery: ['/projects/powbit-home.jpg','/projects/powbit-1.png', '/projects/powbit-2.png', '/projects/powbit-3.png', '/projects/powbit-4.png', '/projects/powbit-5.png'],
     skills: ['Vue 3', 'Nuxt 3', 'UnoCSS'],
     role: '前端開發｜品牌官網與錢包功能整合',
     tags: ['官網開發', '國際化', '加密貨幣', '效能優化'],
-    link: '#'
+    link: ''
   },
   {
     id: 3,
@@ -59,7 +58,7 @@ const projects = [
     skills: ['Vue 3', 'UnoCSS', 'Ant Design Vue', 'Tiptap'],
     role: '前端開發｜後台系統與 UI 工具建置',
     tags: ['後台系統', 'UI 元件', 'Tiptap', 'UX 優化'],
-    link: '#'
+    link: ''
   },
   {
     id: 1,
@@ -79,7 +78,7 @@ const projects = [
     skills: ['Vue 2 → Vue 3', 'Nuxt 3', 'TypeScript', 'Tailwind CSS', 'Element Plus'],
     role: '前端主導開發與架構重構',
     tags: ['加密貨幣', 'WebSocket', 'KYC', 'i18n'],
-    link: '#'
+    link: ''
   },
   {
     id: 4,
@@ -100,7 +99,7 @@ const projects = [
     skills: ['Vue 3', 'Pixi.js', 'Pinia', 'Howler.js', 'UnoCSS'],
     role: '前端開發｜遊戲引擎與自動策略模組',
     tags: ['即時遊戲', 'Pixi.js', '策略模組', '互動動畫'],
-    link: '#'
+    link: ''
   }
 ]
 
