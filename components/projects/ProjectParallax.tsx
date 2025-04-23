@@ -9,6 +9,7 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
   const [width, setWidth] = useState(0);
   const [isFullyInView, setIsFullyInView] = useState(false);
   const length = projects.length;
+  const [moveLeft, setMoveLeft] = useState(0); // 控制 x 位移的值
 
   // 兩種主要背景顏色
   const bgColors = {
@@ -30,6 +31,11 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
         } else {
           setIsFullyInView(false);
         }
+        if(rect.top <= 0){
+          const offsetAmount = Math.floor(rect.top/width) - 1
+          setMoveLeft(offsetAmount * width)
+          console.log(offsetAmount * width, rect.top, width)
+        }
       }
     };
 
@@ -43,7 +49,7 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
       window.removeEventListener("scroll", checkInView);
       window.removeEventListener("resize", checkInView);
     };
-  }, []);
+  }, [width]);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -52,8 +58,8 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  const x = useTransform(scrollYProgress, [0, 1], [0, -width * (length-1)]);
+  // const { scrollYProgress } = useScroll({ target: containerRef });
+  // const x = useTransform(scrollYProgress, [0, 1], [0, -width * (length-1)]);
 
   return (
     <div
@@ -65,14 +71,17 @@ export default function ProjectParallax({ projects }: { projects: Project[] }) {
         <motion.div
           className={cn(
             "image-group flex top-0 left-0",
-            isFullyInView ? "fixed" : "static"
+            isFullyInView ? "fixed" : "absolute left-0 top-0"
           )}
-          style={{ x }}
+          animate={{ x: moveLeft }}
+          transition={{ type: "spring", stiffness: 300 }}
         >
           {projects.map((project, index) => (
             <div 
               key={project.id} 
-              className={index % 2 === 0 ? bgColors.color1.className : bgColors.color2.className}
+              className={cn(
+                'snap-center',
+                index % 2 === 0 ? bgColors.color1.className : bgColors.color2.className)}
             >
               <ProjectPageCard project={project} />
             </div>

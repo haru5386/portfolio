@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import AnimatedElement from '../ui-components/AnimatedElement';
 import ProjectParallax from './ProjectParallax';
 // 示例项目数据
@@ -104,19 +103,6 @@ const projects = [
 
 
 export default function Projects() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const handlePrev = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -330, behavior: 'smooth' });
-    }
-  };
-
-  const handleNext = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 330, behavior: 'smooth' });
-    }
-  };
 
   return (
     <section id="projects" className="min-h-screen w-full flex flex-col justify-center pt-20 pb-8 relative scroll-snap-start relative overflow-hidden bg-[#f5f5f0]">
@@ -129,50 +115,9 @@ export default function Projects() {
             Portfolio
             </h2>
           </AnimatedElement>
-          
-          <div className="flex gap-3">
-            <button 
-              onClick={handlePrev}
-              aria-label="Previous projects"
-              className="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6"/>
-              </svg>
-            </button>
-            <button 
-              onClick={handleNext}
-              aria-label="Next projects"
-              className="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6"/>
-              </svg>
-            </button>
-          </div>
         </div>
-        <ProjectParallax projects={projects}/>
       </div>
+        <ProjectParallax projects={projects}/>
     </section>
   );
 } 
