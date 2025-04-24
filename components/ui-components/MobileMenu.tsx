@@ -7,7 +7,7 @@ import {
   SheetTitle
 } from "@/components/ui/sheet";
 import { NavItem } from '@/types/index.type';
-
+import { socialLinks } from '@/data/data';
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
@@ -63,14 +63,23 @@ export default function MobileMenu({ isOpen, onClose, navItems}: MobileMenuProps
         </nav>
         
         <div className="mt-auto p-6 border-t-2 border-black">
-          <a 
-            href="#contact" 
-            className="block border-2 border-black bg-black text-white hover:bg-transparent hover:text-black py-3 font-medium transition-all duration-300 text-center relative overflow-hidden group"
-            onClick={onClose}
-          >
-            <span className="relative z-10">聯絡我</span>
-            <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
-          </a>
+         
+        <div className="flex gap-2 items-center">
+          {socialLinks.map((social) => (
+              <motion.a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center  hover:bg-red-200/30 hover:text-grey-800 transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {social.icon}
+              </motion.a>
+
+          ))}
+          </div>
         </div>
       </SheetContent>
     </Sheet>

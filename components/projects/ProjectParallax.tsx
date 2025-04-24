@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Project } from "@/types/index.type";
 import ProjectPageCard from "./ProjectPageCard";
+import { projects } from "@/data/data";
 
-export default function ProjectParallax({ projects }: Readonly<{ projects: Project[] }>) {
+
+export default function ProjectParallax() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
@@ -34,7 +35,7 @@ export default function ProjectParallax({ projects }: Readonly<{ projects: Proje
           setIsFullyInView(false);
         }
 
-        if(rect.top <= 0 && rect.top >= -width * length + height ){
+        if(rect.top <= 0 && rect.top >= -width * length ){
           const x = Math.round(rect.top / width) * width
           setOffset(-x)
         }
@@ -80,7 +81,6 @@ export default function ProjectParallax({ projects }: Readonly<{ projects: Proje
           initial={{ x: 0 }}
           animate={{ x: -offset }}
           transition={{  type: 'easeInOut' }}
-          viewport={{amount: 'all'}}
         >
           {projects.map((project, index) => (
             <div 

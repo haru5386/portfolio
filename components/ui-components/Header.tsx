@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MobileMenu from './MobileMenu';
 import { NavItem } from '@/types/index.type';
+import { socialLinks } from '@/data/data';
 
 const navItems: NavItem[] = [
   { name: '首頁', href: '#hero' },
@@ -82,13 +83,22 @@ export default function Header() {
             ))}
           </nav>
           
-          <a 
-            href="#contact" 
-            className="hidden md:block border-2 border-black bg-black text-white hover:bg-transparent hover:text-black px-5 py-2 font-medium transition-all duration-300 text-sm relative overflow-hidden group"
-          >
-            <span className="relative z-10">聯絡我</span>
-            <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
-          </a>
+          <div className="hidden md:flex gap-2 items-center">
+          {socialLinks.map((social) => (
+              <motion.a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center  hover:bg-red-200/30 hover:text-grey-800 transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {social.icon}
+              </motion.a>
+
+        ))}
+          </div>
           
           <div className="md:hidden">
             <button 
